@@ -1,0 +1,323 @@
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS — رايق وبسيط
+   ═══════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────
+   KEYFRAMES
+   ────────────────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1);           }
+  to   { transform: translate(25px, 18px) scale(1.04);  }
+}
+
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity: 0; }
+  40%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+  60%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1;  transform: scale(1);    }
+  50%       { opacity: .5; transform: scale(1.25); }
+}
+
+@keyframes shimmer {
+  from { left: -80%;  }
+  to   { left: 140%;  }
+}
+
+@keyframes ripple {
+  from { transform: scale(0.3); opacity: .5; }
+  to   { transform: scale(3);   opacity: 0;  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   REVEAL SYSTEM
+   عناصر بـ class="reveal" تظهر ناعمة عند الـ scroll
+   الـ JS يضيف class="visible" لما يدخلوا الـ viewport
+   ────────────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger — كل card تيجي بعد التانية بشوية */
+.grid .reveal:nth-child(1),
+.projects-grid .reveal:nth-child(1),
+.testimonials-grid .reveal:nth-child(1),
+.blog-grid .reveal:nth-child(1)  { transition-delay: 0s;     }
+
+.grid .reveal:nth-child(2),
+.projects-grid .reveal:nth-child(2),
+.testimonials-grid .reveal:nth-child(2),
+.blog-grid .reveal:nth-child(2)  { transition-delay: 0.08s;  }
+
+.grid .reveal:nth-child(3),
+.projects-grid .reveal:nth-child(3),
+.testimonials-grid .reveal:nth-child(3),
+.blog-grid .reveal:nth-child(3)  { transition-delay: 0.16s;  }
+
+.grid .reveal:nth-child(4),
+.projects-grid .reveal:nth-child(4)  { transition-delay: 0.22s;  }
+.grid .reveal:nth-child(5)           { transition-delay: 0.28s;  }
+.grid .reveal:nth-child(6)           { transition-delay: 0.34s;  }
+
+.stats-grid .reveal:nth-child(1) { transition-delay: 0s;     }
+.stats-grid .reveal:nth-child(2) { transition-delay: 0.07s;  }
+.stats-grid .reveal:nth-child(3) { transition-delay: 0.14s;  }
+.stats-grid .reveal:nth-child(4) { transition-delay: 0.21s;  }
+
+/* ──────────────────────────────────────────────────────────
+   HERO — entrance elements
+   ────────────────────────────────────────────────────────── */
+
+.hero-badge  { animation: fadeUp 0.6s 0.10s ease both; }
+.hero-title  { animation: fadeUp 0.6s 0.22s ease both; }
+.hero-sub    { animation: fadeUp 0.6s 0.34s ease both; }
+.hero-btns   { animation: fadeUp 0.6s 0.46s ease both; }
+.hero-scroll { animation: fadeIn 0.6s 0.70s ease both; }
+
+.badge-dot   { animation: badgePulse 2.4s ease-in-out infinite; }
+.scroll-line { animation: scrollLine 2s  ease-in-out infinite; }
+
+.orb1 { animation: drift  9s ease-in-out infinite alternate;         }
+.orb2 { animation: drift 13s ease-in-out infinite alternate-reverse; }
+
+/* ──────────────────────────────────────────────────────────
+   BUTTONS
+   ────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* shimmer مرة واحدة عند الـ hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+  animation: shimmer 0.55s ease forwards;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(124, 92, 252, 0.3);
+}
+
+.btn-outline {
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Ripple element (يُنشأ بالـ JS) */
+.ripple-el {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+  animation: ripple 0.55s ease forwards;
+}
+
+/* ──────────────────────────────────────────────────────────
+   CARDS — hover ناعم بس
+   ────────────────────────────────────────────────────────── */
+
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(124, 92, 252, 0.14);
+  border-color: rgba(124, 92, 252, 0.35);
+}
+
+.project-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(124, 92, 252, 0.16);
+  border-color: rgba(124, 92, 252, 0.4);
+}
+
+.testimonial-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(124, 92, 252, 0.13);
+}
+
+.blog-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 42px rgba(124, 92, 252, 0.15);
+  border-color: rgba(124, 92, 252, 0.35);
+}
+
+/* ──────────────────────────────────────────────────────────
+   STAT CARDS
+   ────────────────────────────────────────────────────────── */
+
+.stat-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(124, 92, 252, 0.14);
+}
+
+/* ──────────────────────────────────────────────────────────
+   SKILL BADGES
+   ────────────────────────────────────────────────────────── */
+
+.skill-badge {
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.skill-badge:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 92, 252, 0.5);
+  background: rgba(124, 92, 252, 0.18);
+}
+
+/* ──────────────────────────────────────────────────────────
+   NAVIGATION
+   ────────────────────────────────────────────────────────── */
+
+.nav-logo { transition: transform 0.18s ease; }
+.nav-logo:hover { transform: scale(1.05); }
+
+/* ──────────────────────────────────────────────────────────
+   CONTACT METHODS
+   ────────────────────────────────────────────────────────── */
+
+.contact-method {
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.contact-method:hover {
+  transform: translateX(-4px);
+  border-color: rgba(124, 92, 252, 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────
+   FLOATING WHATSAPP
+   ────────────────────────────────────────────────────────── */
+
+.wa-float {
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+.wa-float:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+/* ──────────────────────────────────────────────────────────
+   BACK TO TOP
+   ────────────────────────────────────────────────────────── */
+
+.back-to-top {
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+.back-to-top:hover { transform: translateY(-3px); }
+
+/* ──────────────────────────────────────────────────────────
+   SOCIAL & FOOTER
+   ────────────────────────────────────────────────────────── */
+
+.social-links a {
+  display: inline-block;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.social-links a:hover {
+  transform: translateY(-3px);
+  opacity: 0.75;
+}
+
+.footer-section ul a {
+  transition: color 0.18s ease, padding-right 0.18s ease;
+}
+.footer-section ul a:hover { padding-right: 4px; }
+
+.blog-link { transition: color 0.18s ease, gap 0.18s ease; }
+.blog-link:hover { gap: 12px; }
+
+/* ──────────────────────────────────────────────────────────
+   MOBILE
+   ────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .reveal { transition-duration: 0.4s; }
+
+  /* Hover مش بيشتغل على touch — نشيله */
+  .card:hover,
+  .project-card:hover,
+  .testimonial-card:hover,
+  .blog-card:hover,
+  .stat-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: inherit;
+  }
+
+  .card, .project-card, .testimonial-card, .blog-card {
+    will-change: opacity, transform;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-primary::after { display: none; }
+}
+
+/* ──────────────────────────────────────────────────────────
+   REDUCED MOTION
+   ────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

@@ -1,0 +1,440 @@
+/* ═══════════════════════════════════════════════════════════
+   MOBILE FIRST - RESPONSIVE ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────
+   MOBILE BASE STYLES (First)
+   ────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  :root {
+    --gap-xs:  0.4rem;
+    --gap-sm:  0.8rem;
+    --gap-md:  1.2rem;
+    --gap-lg:  1.5rem;
+    --gap-xl:  2rem;
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hero Section - Mobile */
+  .hero {
+    padding: 5rem 1rem 2rem !important;
+    min-height: 100vh;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hero-title span {
+    display: block;
+    background: linear-gradient(135deg, #7c5cfc, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .hero-btns a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Navigation - Mobile */
+  .navbar {
+    padding: 1rem 1rem !important;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    left: 0;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    background: rgba(10, 10, 15, 0.98);
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links li {
+    padding: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Sections - Mobile */
+  section {
+    padding: 3rem 1rem !important;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+  }
+
+  /* Grid - Mobile */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  /* Cards - Mobile */
+  .card {
+    padding: 1.2rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  /* Projects Grid - Mobile */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-card {
+    padding: 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+  }
+
+  /* Testimonials - Mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1rem;
+  }
+
+  .testimonial-header {
+    gap: 0.8rem;
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .testimonial-info h4 {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.85rem;
+  }
+
+  /* Blog - Mobile */
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .blog-card {
+    padding: 1rem;
+  }
+
+  .blog-title {
+    font-size: 1.1rem;
+  }
+
+  .blog-excerpt {
+    font-size: 0.85rem;
+  }
+
+  .blog-meta {
+    font-size: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  /* About - Mobile */
+  .about-skills {
+    margin-top: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem;
+  }
+
+  .skill-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  /* Stats - Mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Contact - Mobile */
+  .contact-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-form {
+    padding: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  input,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.8rem;
+  }
+
+  /* Buttons - Mobile */
+  .btn-primary,
+  .btn-outline {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* Footer - Mobile */
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  /* Back to Top - Mobile */
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* Floating Button - Mobile */
+  .wa-float {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    bottom: 80px;
+    right: 15px;
+  }
+
+  .wa-tooltip {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   TABLET OPTIMIZATIONS
+   ────────────────────────────────────────────────────────── */
+
+@media (min-width: 481px) and (max-width: 768px) {
+  section {
+    padding: 4rem 2rem !important;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    padding: 1rem 2rem;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   LANDSCAPE MODE
+   ────────────────────────────────────────────────────────── */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    padding: 3rem 1rem 1rem !important;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-btns {
+    flex-direction: row;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  section {
+    padding: 2rem 1rem !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   SMOOTH TOUCH INTERACTIONS
+   ────────────────────────────────────────────────────────── */
+
+.touch-device .card,
+.touch-device .project-card,
+.touch-device .testimonial-card,
+.touch-device .blog-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.touch-device .btn-primary,
+.touch-device .btn-outline {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ──────────────────────────────────────────────────────────
+   PERFORMANCE OPTIMIZATIONS
+   ────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  /* Disable expensive animations on weak devices */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent layout shift */
+  section {
+    overflow-x: hidden;
+  }
+
+  /* Optimize font rendering */
+  body {
+    font-display: swap;
+  }
+
+  /* Hardware acceleration */
+  .card,
+  .project-card,
+  .testimonial-card,
+  .blog-card,
+  .btn-primary {
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   DARK MODE SUPPORT
+   ────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0f;
+    --text: #e8e8f0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1f;
+    --card: #f5f5f5;
+  }
+}
