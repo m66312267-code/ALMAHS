@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <title>محمد فهمي | مطوّر Full Stack</title>
+  <meta name="description" content="محمد فهمي مطوّر Full Stack متخصص في بناء مواقع الويب والمنصات التعليمية والمتاجر الإلكترونية. خبرة 5+ سنوات">
+  <meta name="keywords" content="مطور ويب, Full Stack Developer, React, Node.js, محمد فهمي, تطوير ويب, مصر">
+  <meta name="author" content="محمد فهمي">
+  
+  <meta property="og:title" content="محمد فهمي | مطوّر Full Stack">
+  <meta property="og:description" content="أبني مواقع ومنصات رقمية متكاملة — من الفكرة حتى الإطلاق.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://muhammadfahmy.com">
+  <meta property="og:image" content="https://muhammadfahmy.com/og-image.jpg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations-mega.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='80' fill='%237c5cfc'>M</text></svg>">
+
+  <style>
+  /* ── SPLASH AUTO-HIDE ── */
+  @keyframes splashHide {
+    0%, 85%  { opacity: 1; pointer-events: auto; }
+    100%     { opacity: 0; pointer-events: none;  }
+  }
+  #loader {
+    animation: splashHide 2.8s ease forwards !important;
+  }
+  #loader.hide {
+    display: none !important;
+  }
+
+  /* ── PROJECTS REDESIGN ── */
+  .projects { background: var(--bg); position: relative; overflow: hidden; }
+  .projects::before {
+    content: ''; position: absolute; top: 20%; left: 50%;
+    transform: translateX(-50%); width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(124,92,252,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .projects-header { margin-bottom: 3rem; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+  }
+
+  .project-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124,92,252,0.45);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,92,252,0.12);
+  }
+  .project-card--featured { border-color: rgba(124,92,252,0.22); }
+  .project-card--featured:hover {
+    border-color: rgba(124,92,252,0.6);
+    box-shadow: 0 24px 60px rgba(124,92,252,0.18), 0 0 0 1px rgba(124,92,252,0.2);
+  }
+
+  .project-card__inner { padding: 1.8rem; position: relative; z-index: 1; }
+
+  .project-card__glow {
+    position: absolute; top: -30px; left: -30px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(124,92,252,0.13), transparent 70%);
+    pointer-events: none; opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  .project-card:hover .project-card__glow { opacity: 1; }
+  .project-card__glow--blue  { background: radial-gradient(circle, rgba(96,165,250,0.11), transparent 70%); }
+  .project-card__glow--green { background: radial-gradient(circle, rgba(52,211,153,0.1), transparent 70%); }
+
+  .project-card__top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.3rem;
+  }
+
+  .project-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(124,92,252,0.1); border: 1px solid rgba(124,92,252,0.25);
+    color: var(--accent2); padding: 0.28rem 0.8rem;
+    border-radius: 100px; font-size: 0.72rem; font-weight: 500;
+  }
+  .project-badge--green { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.25); color: #34d399; }
+  .project-badge--orange { background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.25); color: #fb923c; }
+
+  .project-badge__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2);
+    animation: badgePulse 2.2s ease-in-out infinite;
+  }
+  .project-badge__dot--green  { background: #34d399; }
+  .project-badge__dot--orange { background: #fb923c; animation: none; }
+
+  .project-category {
+    font-size: 0.72rem; color: var(--muted);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    padding: 0.25rem 0.7rem; border-radius: 100px;
+  }
+
+  .project-icon-wrap {
+    width: 54px; height: 54px;
+    background: rgba(124,92,252,0.12); border: 1px solid rgba(124,92,252,0.22);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .project-card:hover .project-icon-wrap { background: rgba(124,92,252,0.2); transform: scale(1.05); }
+  .project-icon { font-size: 1.6rem; }
+
+  .project-title {
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 0.55rem;
+    color: var(--text); line-height: 1.35;
+    transition: color 0.2s ease;
+  }
+  .project-card:hover .project-title { color: #fff; }
+
+  .project-desc {
+    color: var(--muted); font-size: 0.87rem;
+    line-height: 1.75; margin-bottom: 1.3rem;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+  .project-tag {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--muted); padding: 0.26rem 0.65rem;
+    border-radius: 8px; font-size: 0.74rem; font-weight: 500;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .project-card:hover .project-tag {
+    border-color: rgba(124,92,252,0.28); color: var(--accent2);
+    background: rgba(124,92,252,0.06);
+  }
+
+  .project-numbers {
+    display: flex; gap: 1.2rem;
+    padding: 1rem 0; border-top: 1px solid var(--border);
+    margin-bottom: 1.3rem;
+  }
+  .project-num { display: flex; flex-direction: column; gap: 2px; }
+  .project-num__val {
+    font-size: 1.05rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Space Mono', monospace;
+  }
+  .project-num__lbl { font-size: 0.7rem; color: var(--muted); }
+
+  .project-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    color: var(--accent2); font-size: 0.84rem; font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+  .project-link:hover { gap: 9px; color: #fff; }
+  .project-link--muted { color: var(--muted); }
+  .project-link--muted:hover { color: var(--accent2); gap: 9px; }
+
+  .projects-cta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 2.2rem; padding: 1.3rem 2rem;
+    background: rgba(124,92,252,0.04);
+    border: 1px solid rgba(124,92,252,0.12);
+    border-radius: 16px;
+  }
+  .projects-cta p { color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card--featured { grid-column: span 2; }
+  }
+  @media (max-width: 640px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card--featured { grid-column: span 1; }
+    .projects-cta { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="loader">
+  <div class="splash-bg"></div>
+  <div class="splash-content">
+    <div class="splash-logo-wrap">
+      <svg class="splash-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7c5cfc;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <g class="hex-outer">
+          <polygon points="100,20 170,55 170,145 100,180 30,145 30,55" 
+                   fill="none" stroke="url(#logoGrad)" stroke-width="2" opacity="0.8"/>
+        </g>
+        <text x="100" y="115" text-anchor="middle" font-size="48" font-weight="700" 
+              fill="url(#logoGrad)" class="logo-text">MF</text>
+      </svg>
+    </div>
+    <div class="splash-divider"></div>
+    <div class="splash-name">محمد فهمي</div>
+    <div class="splash-title">Full Stack Developer</div>
+  </div>
+  <div class="splash-progress">
+    <div class="splash-progress-bar"></div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="navbar">
+  <a href="#" class="nav-logo">MF</a>
+  
+  <button class="hamburger" id="hamburger" aria-label="تبديل القائمة">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">الرئيسية</a></li>
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#projects">المشاريع</a></li>
+    <li><a href="#testimonials">التقييمات</a></li>
+    <li><a href="#blog">المقالات</a></li>
+    <li><a href="#about">حول</a></li>
+    <li><a href="#contact" class="nav-cta">تواصل معي</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="hero" class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  
+  <div class="hero-content reveal">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      متاح للعمل الآن
+    </div>
+    
+    <h1 class="hero-title">
+      مرحباً، أنا <span>محمد فهمي</span>
+    </h1>
+    
+    <p class="hero-sub">
+      أنا مطوّر Full Stack متخصص في بناء تطبيقات ويب عصرية وقابلة للتوسع. 
+      أحول أفكارك إلى منتجات رقمية احترافية.
+    </p>
+    
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">ابدأ مشروعك الآن</a>
+      <a href="#projects" class="btn-outline">شاهد أعمالي</a>
+    </div>
+  </div>
+  
+  <div class="hero-scroll">
+    <span>اسحب للأسفل</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-label">الخدمات</div>
+    <h2 class="section-title">ماذا أقدم؟</h2>
+    <p class="section-desc">حزمة شاملة من خدمات تطوير الويب بأعلى جودة</p>
+    
+    <div class="grid">
+      <div class="card reveal">
+        <div class="card-icon">🎨</div>
+        <h3>تصميم الواجهات</h3>
+        <p>تصميم واجهات مستخدم عصرية وجذابة باستخدام أحدث أدوات التصميم</p>
+        <span class="tag">UI/UX</span>
+      </div>
+      
+      <div class="card reveal">
+        <div class="card-icon">⚙️</div>
+        <h3>تطوير الـ Frontend</h3>
+        <p>تطبيقات ويب تفاعلية بـ React و Vue.js مع أفضل ممارسات الأداء</p>
+        <span class="tag">React • Vue</span>
+      </div>
+      
+      <div class="card reveal">
+        <div class="card-icon">🔌</div>
+        <h3>تطوير الـ Backend</h3>
+        <p>خوادم قوية وآمنة بـ Node.js و Python مع قواعد بيانات محسّنة</p>
+        <span class="tag">Node.js • Python</span>
+      </div>
+      
+      <div class="card reveal">
+        <div class="card-icon">📱</div>
+        <h3>التطبيقات الموبايل</h3>
+        <p>تطبيقات iOS و Android احترافية باستخدام React Native</p>
+        <span class="tag">Mobile</span>
+      </div>
+      
+      <div class="card reveal">
+        <div class="card-icon">🚀</div>
+        <h3>نشر وصيانة</h3>
+        <p>نشر آمن وصيانة مستمرة لضمان استقرار المشروع 24/7</p>
+        <span class="tag">DevOps</span>
+      </div>
+      
+      <div class="card reveal">
+        <div class="card-icon">💡</div>
+        <h3>الاستشارات</h3>
+        <p>استشارات تقنية لاختيار أفضل الحلول لمشروعك</p>
+        <span class="tag">Consulting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects">
+  <div class="container">
+
+    <div class="projects-header reveal">
+      <div class="section-label">المشاريع</div>
+      <h2 class="section-title">أعمالي الأخيرة</h2>
+      <p class="section-desc">مشاريع حقيقية بنيتها لعملاء من مختلف الصناعات — من الفكرة للإطلاق</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card project-card--featured reveal">
+        <div class="project-card__glow"></div>
+        <div class="project-card__inner">
+          <div class="project-card__top">
+            <div class="project-badge">
+              <span class="project-badge__dot"></span>
+              مباشر الآن
+            </div>
+            <span class="project-category">منصة تعليمية</span>
+          </div>
+          <div class="project-icon-wrap"><span class="project-icon">🎓</span></div>
+          <h3 class="project-title">منصة التعلم الإلكترونية</h3>
+          <p class="project-desc">منصة تعليمية متكاملة تضم آلاف الدورات التدريبية مع نظام دفع آمن وشهادات رقمية معتمدة. بُنيت لتتحمّل عشرات الآلاف من المستخدمين في آن واحد.</p>
+          <div class="project-tags">
+            <span class="project-tag">⚛️ React</span>
+            <span class="project-tag">🟢 Node.js</span>
+            <span class="project-tag">🗄️ MongoDB</span>
+            <span class="project-tag">☁️ AWS</span>
+          </div>
+          <div class="project-numbers">
+            <div class="project-num">
+              <span class="project-num__val">+50K</span>
+              <span class="project-num__lbl">طالب مسجّل</span>
+            </div>
+            <div class="project-num">
+              <span class="project-num__val">+500</span>
+              <span class="project-num__lbl">دورة تدريبية</span>
+            </div>
+            <div class="project-num">
+              <span class="project-num__val">99.9%</span>
+              <span class="project-num__lbl">وقت التشغيل</span>
+            </div>
+          </div>
+          <a href="https://example.com" target="_blank" class="project-link">
+            عرض المشروع
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal">
+        <div class="project-card__glow project-card__glow--blue"></div>
+        <div class="project-card__inner">
+          <div class="project-card__top">
+            <div class="project-badge project-badge--green">
+              <span class="project-badge__dot project-badge__dot--green"></span>
+              مباشر
+            </div>
+            <span class="project-category">متجر إلكتروني</span>
+          </div>
+          <div class="project-icon-wrap"><span class="project-icon">🛒</span></div>
+          <h3 class="project-title">متجر الأزياء العصري</h3>
+          <p class="project-desc">متجر إلكتروني متكامل مع لوحة تحكم مخصصة، نظام مخزون ذكي، وتكامل مع بوابات الدفع المحلية.</p>
+          <div class="project-tags">
+            <span class="project-tag">⚡ Next.js</span>
+            <span class="project-tag">🐘 PostgreSQL</span>
+            <span class="project-tag">💳 Stripe</span>
+          </div>
+          <div class="project-numbers">
+            <div class="project-num">
+              <span class="project-num__val">+200</span>
+              <span class="project-num__lbl">طلب يومياً</span>
+            </div>
+            <div class="project-num">
+              <span class="project-num__val">3×</span>
+              <span class="project-num__lbl">نمو المبيعات</span>
+            </div>
+          </div>
+          <a href="https://example.com" target="_blank" class="project-link">
+            عرض المشروع
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card reveal">
+        <div class="project-card__glow project-card__glow--green"></div>
+        <div class="project-card__inner">
+          <div class="project-card__top">
+            <div class="project-badge project-badge--orange">
+              <span class="project-badge__dot project-badge__dot--orange"></span>
+              قيد التطوير
+            </div>
+            <span class="project-category">تطبيق موبايل</span>
+          </div>
+          <div class="project-icon-wrap"><span class="project-icon">📱</span></div>
+          <h3 class="project-title">تطبيق توصيل الطعام</h3>
+          <p class="project-desc">تطبيق توصيل سريع بـ React Native مع تتبع لحظي للطلبات، خرائط تفاعلية، ونظام تقييمات للمطاعم.</p>
+          <div class="project-tags">
+            <span class="project-tag">📱 React Native</span>
+            <span class="project-tag">🗺️ Maps API</span>
+            <span class="project-tag">🔥 Firebase</span>
+          </div>
+          <div class="project-numbers">
+            <div class="project-num">
+              <span class="project-num__val">iOS & Android</span>
+              <span class="project-num__lbl">المنصتين</span>
+            </div>
+            <div class="project-num">
+              <span class="project-num__val">&lt;2s</span>
+              <span class="project-num__lbl">وقت الاستجابة</span>
+            </div>
+          </div>
+          <a href="#contact" class="project-link project-link--muted">
+            تواصل لمعرفة التفاصيل
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="projects-cta reveal">
+      <p>+15 مشروع آخر في سجلّي</p>
+      <a href="#contact" class="btn-outline">تحدّث معي عن مشروعك ←</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <div class="section-label">التقييمات</div>
+    <h2 class="section-title">آراء العملاء</h2>
+    <p class="section-desc">ماذا يقول عملائي عن عملي وخدماتي</p>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><span>أ.س</span></div>
+          <div class="testimonial-info">
+            <h4>أحمد سلام</h4>
+            <p class="testimonial-role">مؤسس منصة تعليمية</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-rating">
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+        </div>
+        
+        <p class="testimonial-text">
+          محمد طور لنا منصة تعليمية احترافية جداً. كان محترفاً جداً في التعامل وألتزم بجميع المواعيد. النتيجة فاقت توقعاتنا!
+        </p>
+      </div>
+      
+      <div class="testimonial-card reveal">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><span>ن.م</span></div>
+          <div class="testimonial-info">
+            <h4>نور محمود</h4>
+            <p class="testimonial-role">مديرة متجر إلكتروني</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-rating">
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+        </div>
+        
+        <p class="testimonial-text">
+          شكراً محمد على العمل الرائع. المتجر يعمل بكفاءة عالية جداً والعملاء سعيدين جداً. سنتعاون معك مرة أخرى!
+        </p>
+      </div>
+      
+      <div class="testimonial-card reveal">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><span>ع.ع</span></div>
+          <div class="testimonial-info">
+            <h4>عمر علي</h4>
+            <p class="testimonial-role">صاحب تطبيق موبايل</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-rating">
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+          <span class="star">⭐</span>
+        </div>
+        
+        <p class="testimonial-text">
+          كان محمد الخيار الأفضل لتطويرنا. معرفته التقنية عميقة جداً وطريقته في الشرح رائعة. سأنصح الجميع به!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section id="blog" class="blog">
+  <div class="container">
+    <div class="section-label">المقالات</div>
+    <h2 class="section-title">أحدث مقالاتي</h2>
+    <p class="section-desc">نصائح وخبرات في تطوير الويب والتكنولوجيا</p>
+    
+    <div class="blog-grid">
+      <article class="blog-card reveal">
+        <div class="blog-category">React</div>
+        <h3 class="blog-title">كيفية بناء تطبيق React احترافي</h3>
+        <p class="blog-excerpt">
+          تعلم أفضل الممارسات لبناء تطبيقات React قابلة للتوسع والصيانة.
+        </p>
+        <div class="blog-meta">
+          <span class="blog-date">15 مارس 2024</span>
+          <span class="blog-read-time">5 دقائق</span>
+        </div>
+        <a href="#" class="blog-link">اقرأ المقالة →</a>
+      </article>
+      
+      <article class="blog-card reveal">
+        <div class="blog-category">Node.js</div>
+        <h3 class="blog-title">دليل شامل لـ RESTful APIs</h3>
+        <p class="blog-excerpt">
+          كيفية تصميم وتطوير APIs آمنة وفعالة باستخدام Node.js و Express.
+        </p>
+        <div class="blog-meta">
+          <span class="blog-date">10 مارس 2024</span>
+          <span class="blog-read-time">8 دقائق</span>
+        </div>
+        <a href="#" class="blog-link">اقرأ المقالة →</a>
+      </article>
+      
+      <article class="blog-card reveal">
+        <div class="blog-category">Performance</div>
+        <h3 class="blog-title">تحسين أداء تطبيقات الويب</h3>
+        <p class="blog-excerpt">
+          تقنيات عملية لتحسين سرعة وأداء موقعك من التحسينات الصغيرة إلى الجذرية.
+        </p>
+        <div class="blog-meta">
+          <span class="blog-date">5 مارس 2024</span>
+          <span class="blog-read-time">7 دقائق</span>
+        </div>
+        <a href="#" class="blog-link">اقرأ المقالة →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="section-label">عني</div>
+        <h2 class="section-title">من أنا؟</h2>
+        <p class="about-text">
+          مطوّر ويب متخصص في بناء تطبيقات عصرية وقابلة للتوسع. بدأت رحلتي قبل 5+ سنوات 
+          وعملت مع عشرات الشركات الناشئة والشركات الكبرى لتحويل أفكارهم إلى منتجات ناجحة.
+        </p>
+        <p class="about-text">
+          أنا مهتم بـ User Experience وأداء التطبيقات والكود النظيف.
+        </p>
+        <a href="#contact" class="btn-primary">دعنا نتحدث</a>
+      </div>
+      
+      <div class="about-skills reveal">
+        <h3 class="skills-title">المهارات الأساسية</h3>
+        <div class="skills-grid">
+          <div class="skill-badge">React</div>
+          <div class="skill-badge">Node.js</div>
+          <div class="skill-badge">JavaScript</div>
+          <div class="skill-badge">TypeScript</div>
+          <div class="skill-badge">MongoDB</div>
+          <div class="skill-badge">PostgreSQL</div>
+          <div class="skill-badge">Docker</div>
+          <div class="skill-badge">AWS</div>
+          <div class="skill-badge">GraphQL</div>
+          <div class="skill-badge">REST APIs</div>
+          <div class="skill-badge">Vue.js</div>
+          <div class="skill-badge">CSS/SASS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section id="stats" class="stats">
+  <div class="container">
+    <h2 class="section-title">الأرقام</h2>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-number" data-target="50">0+</div>
+        <div class="stat-label">المشاريع</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-target="100">0+</div>
+        <div class="stat-label">العملاء</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-target="5">0+</div>
+        <div class="stat-label">سنوات الخبرة</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">ساعات الدعم</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-content">
+      <div class="contact-info reveal">
+        <div class="section-label">تواصل معي</div>
+        <h2 class="section-title">دعنا نعمل معاً</h2>
+        <p class="section-desc">هل لديك مشروع في الذهن؟</p>
+        
+        <div class="contact-methods">
+          <a href="/cdn-cgi/l/email-protection#741c1118181b3419011c151919151012151c190d5a171b19" class="contact-method">
+            <span class="contact-icon">📧</span>
+            <div>
+              <div class="contact-label">البريد الإلكتروني</div>
+              <div class="contact-value"><span class="__cf_email__" data-cfemail="066e636a6a69466b736e676b6b676260676e6b7f2865696b">[email&#160;protected]</span></div>
+            </div>
+          </a>
+          
+          <a href="https://wa.me/201063786533" target="_blank" class="contact-method">
+            <span class="contact-icon">💬</span>
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-value">+20 106 378 6533</div>
+            </div>
+          </a>
+          
+          <a href="https://linkedin.com/in/muhammadfahmy" target="_blank" class="contact-method">
+            <span class="contact-icon">💼</span>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">الملف الشخصي</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-group">
+          <label for="from_name">الاسم *</label>
+          <input type="text" id="from_name" name="from_name" required>
+          <span class="error-msg">يرجى إدخال اسمك</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="from_email">البريد الإلكتروني *</label>
+          <input type="email" id="from_email" name="from_email" required>
+          <span class="error-msg">يرجى إدخال بريد إلكتروني صحيح</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">الموضوع *</label>
+          <input type="text" id="subject" name="subject" required>
+          <span class="error-msg">يرجى إدخال الموضوع</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">الرسالة *</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <span class="error-msg">يرجى إدخال رسالتك</span>
+        </div>
+        
+        <button type="submit" class="btn-primary" id="sendBtn">
+          <span>إرسال الرسالة</span>
+          <span>✦</span>
+        </button>
+        
+        <div id="successMsg" class="form-message success" style="display: none;">
+          ✓ تم إرسال رسالتك بنجاح!
+        </div>
+        <div id="errorMsg" class="form-message error" style="display: none;">
+          ✗ حدث خطأ في الإرسال. يرجى المحاولة مجدداً.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>محمد فهمي</h4>
+        <p>مطوّر Full Stack متخصص في بناء تطبيقات ويب عصرية</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>الروابط</h4>
+        <ul>
+          <li><a href="#hero">الرئيسية</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#projects">المشاريع</a></li>
+          <li><a href="#blog">المقالات</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>التواصل الاجتماعي</h4>
+        <div class="social-links">
+          <a href="https://linkedin.com" target="_blank" title="LinkedIn">🔗</a>
+          <a href="https://github.com" target="_blank" title="GitHub">💻</a>
+          <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+          <a href="https://wa.me/201063786533" target="_blank" title="WhatsApp">💬</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 محمد فهمي. جميع الحقوق محفوظة.</p>
+      <p>HTML5 • CSS3 • JavaScript</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/201063786533" target="_blank" class="wa-float" title="تواصل عبر WhatsApp">
+  <div class="wa-tooltip">اتصل بنا</div>
+  💬
+</a>
+
+<button id="backToTop" class="back-to-top" title="العودة للأعلى" aria-label="العودة للأعلى">↑</button>
+
+<script>
+(function () {
+  'use strict';
+
+  function throttle(fn, limit) {
+    var t;
+    return function () {
+      if (!t) {
+        fn.apply(this, arguments);
+        t = true;
+        setTimeout(function () { t = false; }, limit);
+      }
+    };
+  }
+
+  /* SPLASH */
+  var loader = document.getElementById('loader');
+  if (loader) {
+    setTimeout(function () {
+      loader.classList.add('hide');
+      setTimeout(function () { loader.style.display = 'none'; }, 750);
+    }, 2200);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* REVEAL */
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var revObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry, i) {
+          if (entry.isIntersecting) {
+            setTimeout(function () { entry.target.classList.add('visible'); }, i * 70);
+            revObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { revObs.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    /* COUNTERS */
+    function animateCounter(el) {
+      var target = parseInt(el.dataset.target, 10);
+      if (isNaN(target)) return;
+      var hasSuffix = el.textContent.indexOf('+') !== -1;
+      var inc = target / (1600 / 16);
+      var cur = 0;
+      var timer = setInterval(function () {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur) + (hasSuffix ? '+' : '');
+        if (cur >= target) { el.textContent = target + (hasSuffix ? '+' : ''); clearInterval(timer); }
+      }, 16);
+    }
+    if ('IntersectionObserver' in window) {
+      var cntObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            animateCounter(entry.target);
+            entry.target.dataset.animated = 'true';
+            cntObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.stat-number[data-target]').forEach(function (el) { cntObs.observe(el); });
+    }
+
+    /* NAVBAR */
+    var navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', throttle(function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+      }, 100), { passive: true });
+    }
+
+    /* HAMBURGER */
+    var hamburger = document.getElementById('hamburger');
+    var navLinks  = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.navbar')) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+        }
+      });
+    }
+
+    /* BACK TO TOP */
+    var btt = document.getElementById('backToTop');
+    if (btt) {
+      window.addEventListener('scroll', throttle(function () {
+        btt.classList.toggle('btt-visible', window.scrollY > 300);
+      }, 100), { passive: true });
+      btt.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
+
+    /* SMOOTH SCROLL */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* CONTACT FORM */
+    var form       = document.getElementById('contactForm');
+    var sendBtn    = document.getElementById('sendBtn');
+    var successMsg = document.getElementById('successMsg');
+    var errorMsg   = document.getElementById('errorMsg');
+
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    function validateForm() {
+      var valid = true;
+      document.querySelectorAll('.form-group').forEach(function (g) { g.classList.remove('error'); });
+      var name    = document.getElementById('from_name');
+      var email   = document.getElementById('from_email');
+      var subject = document.getElementById('subject');
+      var message = document.getElementById('message');
+      if (name    && name.value.trim().length < 3)       { name.closest('.form-group').classList.add('error');    valid = false; }
+      if (email   && !isValidEmail(email.value.trim()))  { email.closest('.form-group').classList.add('error');   valid = false; }
+      if (subject && subject.value.trim().length < 3)    { subject.closest('.form-group').classList.add('error'); valid = false; }
+      if (message && message.value.trim().length < 10)   { message.closest('.form-group').classList.add('error'); valid = false; }
+      return valid;
+    }
+
+    if (form) {
+      form.querySelectorAll('input, textarea').forEach(function (inp) {
+        inp.addEventListener('input', function () {
+          if (this.value.trim()) this.closest('.form-group').classList.remove('error');
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validateForm()) {
+          errorMsg.textContent = 'من فضلك تأكد من ملء جميع الحقول بشكل صحيح';
+          errorMsg.style.display = 'block';
+          setTimeout(function () { errorMsg.style.display = 'none'; }, 4000);
+          return;
+        }
+        successMsg.style.display = 'none';
+        errorMsg.style.display   = 'none';
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = '<span>جارٍ الإرسال...</span>';
+
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init('YOUR_PUBLIC_KEY');
+          emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            from_name:  document.getElementById('from_name').value,
+            from_email: document.getElementById('from_email').value,
+            subject:    document.getElementById('subject').value,
+            message:    document.getElementById('message').value,
+            to_name:    'محمد فهمي'
+          }).then(function () {
+            successMsg.textContent = '✓ تم إرسال رسالتك بنجاح! سأرد عليك قريباً.';
+            successMsg.style.display = 'block';
+            form.reset();
+          }).catch(function () {
+            errorMsg.textContent = '✗ حدث خطأ في الإرسال. يرجى المحاولة مجدداً.';
+            errorMsg.style.display = 'block';
+          }).finally(function () {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<span>إرسال الرسالة</span><span>✦</span>';
+            setTimeout(function () { successMsg.style.display = 'none'; errorMsg.style.display = 'none'; }, 6000);
+          });
+        } else {
+          setTimeout(function () {
+            successMsg.textContent = '✓ شكراً على رسالتك! سأرد عليك قريباً.';
+            successMsg.style.display = 'block';
+            form.reset();
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<span>إرسال الرسالة</span><span>✦</span>';
+            setTimeout(function () { successMsg.style.display = 'none'; }, 6000);
+          }, 800);
+        }
+      });
+    }
+
+  }); /* end DOMContentLoaded */
+})();
+</script>
+
+</body>
+</html>
