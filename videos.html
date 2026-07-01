@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيديوهات دينية — نور الهدى</title>
+<meta name="description" content="مكتبة فيديوهات دينية مصنّفة: خطب، تفسير، قصص الأنبياء، أذكار وأدعية، تلاوات.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" stroke="#1F4D3A" stroke-width="1.5"/>
+        <path d="M22 10a8 8 0 1 0 0 14 9.5 9.5 0 1 1 0-14Z" fill="#1F4D3A"/>
+        <circle cx="24" cy="10.5" r="1.6" fill="#B8935A"/>
+      </svg>
+      نور الهدى
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+      <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="videos.html" class="active">فيديوهات</a></li>
+      <li><a href="quran.html">المصحف</a></li>
+      <li><a href="about.html">عن الموقع</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="ti ti-brand-youtube" style="color:var(--green-mid); font-size:26px; vertical-align:-3px;" aria-hidden="true"></i> فيديوهات دينية</h1>
+      <p>مجموعة مختارة من الفيديوهات الدينية، مصنّفة حسب الموضوع لتسهيل الوصول لما تبحث عنه.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="search-box">
+        <i class="ti ti-search" aria-hidden="true"></i>
+        <input type="text" id="videoSearch" placeholder="ابحث عن فيديو أو قناة">
+      </div>
+      <div class="filters" id="filterChips"></div>
+      <div class="grid-videos" id="videoGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">نور الهدى</p>
+        <p class="footer-desc">موقع بسيط يجمع الفيديوهات الدينية والمصحف الشريف، بهدف تسهيل الوصول لمحتوى نافع وهادئ.</p>
+      </div>
+      <div class="footer-col">
+        <h4>تصفح</h4>
+        <ul>
+          <li><a href="videos.html">فيديوهات</a></li>
+          <li><a href="quran.html">المصحف</a></li>
+          <li><a href="about.html">عن الموقع</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>روابط</h4>
+        <ul>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">يوتيوب</a></li>
+          <li><a href="https://alquran.cloud" target="_blank" rel="noopener">مصدر بيانات القرآن</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 نور الهدى</span>
+      <span>صُنع بحب لخدمة المحتوى الديني الهادف</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

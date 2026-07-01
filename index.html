@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور الهدى — فيديوهات دينية والمصحف الشريف</title>
+<meta name="description" content="موقع ديني يجمع فيديوهات دينية مختارة من يوتيوب والمصحف الشريف كامل بالقراءة والاستماع.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" stroke="#1F4D3A" stroke-width="1.5"/>
+        <path d="M22 10a8 8 0 1 0 0 14 9.5 9.5 0 1 1 0-14Z" fill="#1F4D3A"/>
+        <circle cx="24" cy="10.5" r="1.6" fill="#B8935A"/>
+      </svg>
+      نور الهدى
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+      <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="videos.html">فيديوهات</a></li>
+      <li><a href="quran.html">المصحف</a></li>
+      <li><a href="about.html">عن الموقع</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow"><i class="ti ti-moon-stars" aria-hidden="true"></i> محتوى ديني هادئ وموثوق</span>
+        <h1 class="hero-title">فيديوهات دينية، وقرآن كريم<br>في مكان واحد</h1>
+        <hr class="hero-rule">
+        <p class="hero-lead">مجموعة مختارة من الفيديوهات الدينية على يوتيوب، بجانب المصحف الشريف كاملاً للقراءة والاستماع، في تصميم هادئ بلا تشتيت.</p>
+        <div class="hero-actions">
+          <a href="videos.html" class="btn btn-primary"><i class="ti ti-player-play" aria-hidden="true"></i> شاهد الفيديوهات</a>
+          <a href="quran.html" class="btn btn-ghost"><i class="ti ti-book-2" aria-hidden="true"></i> افتح المصحف</a>
+        </div>
+      </div>
+      <div class="hero-verse-card">
+        <p class="verse">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+        <p class="verse-ref">سورة طه — الآية 114</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" role="presentation"></div>
+
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">مختارات الأسبوع</p>
+          <h2 class="section-title">فيديوهات دينية مختارة</h2>
+        </div>
+        <a href="videos.html" class="section-link">مشاهدة الكل <i class="ti ti-arrow-left" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="grid-videos" id="homeVideoGrid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="quran">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">تلاوة وحفظ</p>
+          <h2 class="section-title">المصحف الشريف</h2>
+        </div>
+        <a href="quran.html" class="section-link">فتح المصحف كاملاً <i class="ti ti-arrow-left" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="quran-panel">
+        <div class="quran-card">
+          <ul class="surah-list" id="surahPreviewList">
+            <li class="status-msg">جارٍ تحميل قائمة السور…</li>
+          </ul>
+        </div>
+
+        <div class="prayer-card">
+          <div>
+            <p class="label">الصلاة القادمة</p>
+            <p class="current" id="nextPrayerName">—</p>
+          </div>
+          <ul class="prayer-times" id="prayerTimesList">
+            <li class="status-msg" style="color:var(--green-soft)">جارٍ تحديد موقعك…</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">لماذا نور الهدى</p>
+          <h2 class="section-title">تجربة هادئة، بلا إعلانات وبلا تشتيت</h2>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+          <h3>فيديوهات منتقاة بعناية</h3>
+          <p>محتوى ديني موثوق من قنوات معروفة، مصنّف حسب الموضوع لسهولة الوصول.</p>
+        </div>
+        <div class="feature">
+          <i class="ti ti-book-2" aria-hidden="true"></i>
+          <h3>مصحف كامل بالقراءة والاستماع</h3>
+          <p>جميع السور بأصوات قراء مختارين، مع نص عربي واضح للقراءة المباشرة.</p>
+        </div>
+        <div class="feature">
+          <i class="ti ti-clock" aria-hidden="true"></i>
+          <h3>مواقيت الصلاة</h3>
+          <p>مواقيت دقيقة بناءً على موقعك، تظهر لك الصلاة القادمة أولاً بأول.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">نور الهدى</p>
+        <p class="footer-desc">موقع بسيط يجمع الفيديوهات الدينية والمصحف الشريف، بهدف تسهيل الوصول لمحتوى نافع وهادئ.</p>
+      </div>
+      <div class="footer-col">
+        <h4>تصفح</h4>
+        <ul>
+          <li><a href="videos.html">فيديوهات</a></li>
+          <li><a href="quran.html">المصحف</a></li>
+          <li><a href="about.html">عن الموقع</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>روابط</h4>
+        <ul>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">يوتيوب</a></li>
+          <li><a href="https://alquran.cloud" target="_blank" rel="noopener">مصدر بيانات القرآن</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 نور الهدى</span>
+      <span>صُنع بحب لخدمة المحتوى الديني الهادف</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
